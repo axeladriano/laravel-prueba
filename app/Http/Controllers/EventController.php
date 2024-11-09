@@ -67,7 +67,7 @@ class EventController extends Controller
         'restante'=> $data->capacidad_max - $ticket,
         'idEstado'=> $data->idEstado];
 
-        return $d;
+        return response()->json(['message'=> 'data'=> $d],200);
      
     }
     public function update(Request $request, string $id)

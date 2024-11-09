@@ -30,7 +30,7 @@ class ReservationController extends Controller
             ]);
             $data = DB::table('reservations')->where('id',$e)->first();
             DB::commit();
-            return response()->json(['data'=> $data],400);
+            return response()->json(['data'=> $data],200);
         }
         catch(Exception $e)
         {
@@ -44,7 +44,8 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
-           //
+        $data = DB::table('reservations')->where('idEstado','=',1)->where('id',$id)->first();
+        return response()->json(['data'=> $data],200);
     }
 
     /**
@@ -62,7 +63,7 @@ class ReservationController extends Controller
             ]);
             $data = DB::table('reservations')->where('id',$id)->first();
             DB::commit();
-            return response()->json(['data'=> $data],400);
+            return response()->json(['data'=> $data],200);
         }
         catch(Exception $e)
         {
@@ -76,6 +77,8 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        return  DB::table('reservations')->where('id',$id)->delete();
+        $e =  DB::table('reservations')->where('id',$id)->delete();
+
+        return response()->json(['mensaje'=> 'Eliminado'],200);
     }
 }
